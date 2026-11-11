@@ -16,6 +16,7 @@ public class Pedido {
     public Pedido(String codigo, LocalDate fecha, Cliente clientePedido, ModalidadEntrega modalidadEntrega) {
         this.codigo = codigo;
         this.fecha = fecha;
+        this.cliente = clientePedido;
         this.ModalidadEntrega = modalidadEntrega;
         this.estadoPedido = EstadoPedido.PENDIENTE;
         this.listaDetallePedido = new ArrayList<>();

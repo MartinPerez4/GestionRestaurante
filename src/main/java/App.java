@@ -4,7 +4,7 @@ import java.time.LocalDate;
 public class App {
     public static void main(String[] args) {
 
-         Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         Restaurante restaurante = new Restaurante("Sabor & Tradición", "123456789", "Armenia, Quindío");
 
@@ -45,7 +45,7 @@ public class App {
 
                     System.out.print("Código: ");
                     String codigo = sc.nextLine();
-                    if (codigo.isEmpty()){
+                    if (codigo.isEmpty()) {
                         System.out.print("codigo vacio");
                         break;
                     }
@@ -187,7 +187,7 @@ public class App {
 
                     System.out.print("Documento: ");
                     String documentoIdentidad = sc.nextLine();
-                    if (documentoIdentidad.isEmpty()){
+                    if (documentoIdentidad.isEmpty()) {
                         System.out.print("codigo vacio");
                         break;
                     }
@@ -209,7 +209,7 @@ public class App {
                     System.out.print("Dirección: ");
                     String direccion = sc.nextLine();
 
-                    Cliente cliente = new Cliente(documentoIdentidad, nombreCliente,telefono, correo, direccion
+                    Cliente cliente = new Cliente(documentoIdentidad, nombreCliente, telefono, correo, direccion
                     );
 
                     if (restaurante.registrarCliente(cliente)) {
@@ -472,7 +472,8 @@ public class App {
 
                     boolean confirmable = true;
 
-                    if (restaurante.buscarCliente(
+                    if (pedidoConfirmar.getCliente() == null
+                            || restaurante.buscarCliente(
                             pedidoConfirmar.getCliente().getDocumentoIdentidad()) == null) {
                         System.out.println("El cliente no está registrado.");
                         confirmable = false;
@@ -606,64 +607,67 @@ public class App {
                                 System.out.println("No hay pedidos en ese estado.");
                             } else {
                                 for (Pedido ped : pedidosPorEstado) {
-                                    System.out.println(ped.getCodigo()
-                                            + " - Cliente: " + ped.getCliente().getNombreCompleto()
-                                            + " - Total: " + ped.calcularTotal());
+
+                                    System.out.println("Código: " + ped.getCodigo());
+
+                                    if (ped.getCliente() == null) {
+                                        System.out.println("El pedido no tiene cliente asignado.");
+                                    }
                                 }
                             }
                         }
-                    } else {
-                        System.out.println("Opción no válida.");
-                    }
-                    break;
-                case 13:
-                    System.out.println("\n------ Reportes de ventas ------");
-
-                    ReporteVentas reporte = new ReporteVentas(restaurante);
-
-                    double ingresosBebidas = reporte.calcularIngresosPorCategoria("Bebida");
-                    double ingresosPlatos = reporte.calcularIngresosPorCategoria("PlatoFuerte");
-                    double ingresosPostres = reporte.calcularIngresosPorCategoria("Postre");
-
-                    System.out.println("Ingresos del restaurante (sin domicilios): "
-                            + reporte.calcularIngresosRestaurante());
-                    System.out.println("Ingresos de bebidas: " + ingresosBebidas);
-                    System.out.println("Ingresos de platos fuertes: " + ingresosPlatos);
-                    System.out.println("Ingresos de postres: " + ingresosPostres);
-
-                    Producto masVendido = reporte.obtenerProductoMasVendido();
-
-                    if (masVendido == null) {
-                        System.out.println("No hay ventas registradas.");
-                    } else {
-                        System.out.println("Producto más vendido: " + masVendido.getNombre()
-                                + " (" + reporte.obtenerUnidadesVendidas(masVendido) + " unidades)");
-
-                        String categoriaMayor;
-                        if (ingresosBebidas >= ingresosPlatos && ingresosBebidas >= ingresosPostres) {
-                            categoriaMayor = "Bebidas";
-                        } else if (ingresosPlatos >= ingresosPostres) {
-                            categoriaMayor = "Platos fuertes";
-                        } else {
-                            categoriaMayor = "Postres";
+                        } else{
+                            System.out.println("Opción no válida.");
                         }
-                        System.out.println("Categoría con mayores ingresos: " + categoriaMayor);
+                        break;
+                        case 13:
+                            System.out.println("\n------ Reportes de ventas ------");
+
+                            ReporteVentas reporte = new ReporteVentas(restaurante);
+
+                            double ingresosBebidas = reporte.calcularIngresosPorCategoria("Bebida");
+                            double ingresosPlatos = reporte.calcularIngresosPorCategoria("PlatoFuerte");
+                            double ingresosPostres = reporte.calcularIngresosPorCategoria("Postre");
+
+                            System.out.println("Ingresos del restaurante (sin domicilios): "
+                                    + reporte.calcularIngresosRestaurante());
+                            System.out.println("Ingresos de bebidas: " + ingresosBebidas);
+                            System.out.println("Ingresos de platos fuertes: " + ingresosPlatos);
+                            System.out.println("Ingresos de postres: " + ingresosPostres);
+
+                            Producto masVendido = reporte.obtenerProductoMasVendido();
+
+                            if (masVendido == null) {
+                                System.out.println("No hay ventas registradas.");
+                            } else {
+                                System.out.println("Producto más vendido: " + masVendido.getNombre()
+                                        + " (" + reporte.obtenerUnidadesVendidas(masVendido) + " unidades)");
+
+                                String categoriaMayor;
+                                if (ingresosBebidas >= ingresosPlatos && ingresosBebidas >= ingresosPostres) {
+                                    categoriaMayor = "Bebidas";
+                                } else if (ingresosPlatos >= ingresosPostres) {
+                                    categoriaMayor = "Platos fuertes";
+                                } else {
+                                    categoriaMayor = "Postres";
+                                }
+                                System.out.println("Categoría con mayores ingresos: " + categoriaMayor);
+                            }
+
+                            System.out.println("Ingresos por domicilios (aparte): "
+                                    + reporte.consultarIngresosDomicilios());
+                            break;
+
+                        case 0:
+                            System.out.println("Gracias por visitar Sabor & Tradición.");
+                            break;
+                        default:
+                            System.out.println("Opción no válida.");
                     }
 
-                    System.out.println("Ingresos por domicilios (aparte): "
-                            + reporte.consultarIngresosDomicilios());
-                    break;
-
-                case 0:
-                    System.out.println("Gracias por visitar Sabor & Tradición.");
-                    break;
-                default:
-                    System.out.println("Opción no válida.");
-            }
-
-        } while (opcion != 0);
+            } while (opcion != 0) ;
+        }
     }
-}
 
 
 

@@ -58,6 +58,7 @@ public class Cliente {
         this.direccion = direccion;
     }
 
+
     public List<Pedido> getListaHistorialPedido() {
         return listaHistorialPedido;
     }
