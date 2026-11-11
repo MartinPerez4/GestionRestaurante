@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
+    protected Cliente cliente;
     protected String codigo;
     protected LocalDate fecha;
     protected double distancia;
@@ -12,7 +13,7 @@ public class Pedido {
     ModalidadEntrega ModalidadEntrega;
     protected List<DetallePedido> listaDetallePedido;
 
-    public Pedido(String codigo, LocalDate fecha, ModalidadEntrega modalidadEntrega) {
+    public Pedido(String codigo, LocalDate fecha, Cliente clientePedido, ModalidadEntrega modalidadEntrega) {
         this.codigo = codigo;
         this.fecha = fecha;
         this.ModalidadEntrega = modalidadEntrega;
@@ -83,6 +84,20 @@ public class Pedido {
 
     public void setListaDetallePedido(List<DetallePedido> listaDetallePedido) {
         this.listaDetallePedido = listaDetallePedido;
+    }
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+
+    public void asignarEmpresaDomicilio(EmpresaDomicilio empresa, double distancia) {
+        this.empresaDomicilio = empresa;
+        this.distancia = distancia;
+        this.costoDomicilio = empresa.calcularCosto(distancia);
     }
     public void agregarProducto(Producto producto, int cantidad) {
         listaDetallePedido.add(new DetallePedido(producto, cantidad, producto.calcularPrecioVenta()));

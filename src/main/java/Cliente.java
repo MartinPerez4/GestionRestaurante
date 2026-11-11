@@ -11,7 +11,7 @@ public class Cliente {
 
     public Cliente(String documentoIdentidad, String direccion, String correo, String telefono, String nombreCompleto) {
         this.documentoIdentidad = documentoIdentidad;
-        this.listaHistorialPedido = listaHistorialPedido;
+        this.listaHistorialPedido = new ArrayList<>();
         this.direccion = direccion;
         this.correo = correo;
         this.telefono = telefono;

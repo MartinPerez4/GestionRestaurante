@@ -13,9 +13,9 @@ public class Restaurante {
         this.nombreComercio = nombreComercio;
         this.nit = nit;
         this.direccion = direccion;
-        this.listaProductos = listaProductos;
-        this.listaClientes = listaClientes;
-        this.listaPedidos = listaPedidos;
+        this.listaProductos = new ArrayList<>();
+        this.listaClientes = new ArrayList<>();
+        this.listaPedidos = new ArrayList<>();
     }
 
     public String getNombreComercio() {
