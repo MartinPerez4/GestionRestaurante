@@ -5,17 +5,17 @@ public class Restaurante {
     private String nombreComercio;
     private String nit;
     private String direccion;
-    private List<Producto> ListaProductos;
+    private List<Producto> listaProductos;
     private List<Cliente> listaClientes;
     private List<Pedido> listaPedidos;
 
-    public Restaurante(String nombreComercio, String nit, String direccion, List<Producto> listaProductos, List<Cliente> listaClientes, List<Pedido> listaPedidos) {
+    public Restaurante(String nombreComercio, String nit, String direccion) {
         this.nombreComercio = nombreComercio;
         this.nit = nit;
         this.direccion = direccion;
-        ListaProductos = listaProductos;
+        this.listaProductos = listaProductos;
         this.listaClientes = listaClientes;
-        this.listaPedidos = listaPedidos;c
+        this.listaPedidos = listaPedidos;
     }
 
     public String getNombreComercio() {
@@ -43,11 +43,11 @@ public class Restaurante {
     }
 
     public List<Producto> getListaProductos() {
-        return ListaProductos;
+        return listaProductos;
     }
 
     public void setListaProductos(List<Producto> listaProductos) {
-        ListaProductos = listaProductos;
+        listaProductos = listaProductos;
     }
 
     public List<Cliente> getListaClientes() {
@@ -67,7 +67,7 @@ public class Restaurante {
     }
 
     public void registrarProducto(Producto producto) {
-        ListaProductos.add(producto);
+        listaProductos.add(producto);
     }
 
     public boolean registrarCliente(Cliente cliente) {
@@ -84,7 +84,7 @@ public class Restaurante {
         return listaPedidos.add(pedido);
     }
     public Producto buscarProducto(String codigo) {
-        for (Producto p : ListaProductos) {
+        for (Producto p : listaProductos) {
             if (p.getCodigo().equals(codigo)) {
                 return p;
             }
@@ -111,12 +111,12 @@ public class Restaurante {
     }
 
     public List<Producto> consultarProductos() {
-        return ListaProductos;
+        return listaProductos;
     }
 
     public List<Producto> consultarProductosValidos() {
         List<Producto> validos = new ArrayList<>();
-        for (Producto p : ListaProductos) {
+        for (Producto p : listaProductos) {
             if (p.validarCalidad()) {
                 validos.add(p);
             }
@@ -126,7 +126,7 @@ public class Restaurante {
 
     public List<Producto> consultarProductosRechazados() {
         List<Producto> rechazados = new ArrayList<>();
-        for (Producto p : ListaProductos) {
+        for (Producto p : listaProductos) {
             if (!p.validarCalidad()) {
                 rechazados.add(p);
             }

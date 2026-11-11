@@ -9,7 +9,7 @@ public class Cliente {
     private String direccion;
     private List<Pedido> listaHistorialPedido;
 
-    public Cliente(String documentoIdentidad, List<Pedido> listaHistorialPedido, String direccion, String correo, String telefono, String nombreCompleto) {
+    public Cliente(String documentoIdentidad, String direccion, String correo, String telefono, String nombreCompleto) {
         this.documentoIdentidad = documentoIdentidad;
         this.listaHistorialPedido = listaHistorialPedido;
         this.direccion = direccion;
