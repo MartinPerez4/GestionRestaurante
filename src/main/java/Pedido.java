@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    protected Cliente cliente;
+    Cliente cliente;
     protected String codigo;
     protected LocalDate fecha;
     protected double distancia;
@@ -81,10 +81,6 @@ public class Pedido {
     public List<DetallePedido> getListaDetallePedido() {
         return listaDetallePedido;
     }
-
-    public void setListaDetallePedido(List<DetallePedido> listaDetallePedido) {
-        this.listaDetallePedido = listaDetallePedido;
-    }
     public Cliente getCliente() {
         return cliente;
     }
@@ -93,17 +89,19 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-
-    public void asignarEmpresaDomicilio(EmpresaDomicilio empresa, double distancia) {
-        this.empresaDomicilio = empresa;
-        this.distancia = distancia;
-        this.costoDomicilio = empresa.calcularCosto(distancia);
+    public void setListaDetallePedido(List<DetallePedido> listaDetallePedido) {
+        this.listaDetallePedido = listaDetallePedido;
     }
     public void agregarProducto(Producto producto, int cantidad) {
         listaDetallePedido.add(new DetallePedido(producto, cantidad, producto.calcularPrecioVenta()));
     }
     public void agregarDetalle(DetallePedido detalle) {
         listaDetallePedido.add(detalle);
+    }
+    public void asignarEmpresaDomicilio(EmpresaDomicilio empresa, double distancia) {
+        this.empresaDomicilio = empresa;
+        this.distancia = distancia;
+        this.costoDomicilio = empresa.calcularCosto(distancia);
     }
 
     public double calcularSubtotal() {
