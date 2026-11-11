@@ -9,7 +9,7 @@ public class Restaurante {
     private List<Cliente> listaClientes;
     private List<Pedido> listaPedidos;
 
-    public Restaurante(String nombreComercio, String nit, String direccion) {
+    public Restaurante(String nombreComercio, String nit, String direccion, List<Producto> listaProductos, List<Cliente> listaClientes, List<Pedido> listaPedidos) {
         this.nombreComercio = nombreComercio;
         this.nit = nit;
         this.direccion = direccion;

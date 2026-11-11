@@ -12,12 +12,15 @@ public class Pedido {
     ModalidadEntrega ModalidadEntrega;
     protected List<DetallePedido> listaDetallePedido;
 
-    public Pedido(String codigo, LocalDate fecha, ModalidadEntrega modalidadEntrega) {
+    public Pedido(String codigo, LocalDate fecha, double distancia, double costoDomicilio, EstadoPedido estadoPedido, EmpresaDomicilio empresaDomicilio, ModalidadEntrega modalidadEntrega, List<DetallePedido> listaDetallePedido) {
         this.codigo = codigo;
         this.fecha = fecha;
-        this.ModalidadEntrega = modalidadEntrega;
-        this.estadoPedido = EstadoPedido.PENDIENTE;
-        this.listaDetallePedido = new ArrayList<>();
+        this.distancia = distancia;
+        this.costoDomicilio = costoDomicilio;
+        this.estadoPedido = estadoPedido;
+        this.empresaDomicilio = empresaDomicilio;
+        ModalidadEntrega = modalidadEntrega;
+        this.listaDetallePedido = listaDetallePedido;
     }
 
     public String getCodigo() {
